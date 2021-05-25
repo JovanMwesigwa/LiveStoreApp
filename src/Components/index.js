@@ -9,3 +9,4 @@ export {default as IconCard} from './IconCard';
 export {default as IconComponent} from './IconComponent';
 export {default as SearchComponent} from './SearchComponent';
 export {default as ProductCardComponent} from './ProductCardComponent'
+export {default as ProfileCard} from './ProfileCard';

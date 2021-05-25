@@ -1,14 +1,30 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import { Text, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
+import { ProfileCard } from '../../Components'
+import AppText from '../../Components/AppText'
 
 import styles from './styles'
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <Text>My Profile</Text>
-        </View>
+        <ScrollView style={styles.container}>
+            <View style={styles.userContainer}>
+                <View style={styles.avator}>
+
+                </View>
+                <AppText fontSize={20} marginBottom={12}>@JohnDoe</AppText>
+            </View>
+
+            <ProfileCard title="My Cart" onPress={() => navigation.navigate('Cart')} />
+
+            <ProfileCard title="My Orders" />
+
+            <ProfileCard title="Settings" />
+
+            <ProfileCard title="Logout" />
+
+        </ScrollView>
     )
 }
 

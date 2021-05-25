@@ -1,14 +1,15 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
 import { Text, View } from 'react-native'
+import { AppText } from '../../Components'
 
 import styles from './styles'
 
 const CategoriesScreen = () => {
     return (
         <View style={styles.container}>
-            <Text>My Categories</Text>
-        </View>
+            <AppText {...styles.text}>Categories</AppText>
+        </View> 
     )
 }
 

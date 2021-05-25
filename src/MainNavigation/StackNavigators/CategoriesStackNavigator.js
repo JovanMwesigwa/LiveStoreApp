@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 const CategoriesStackNavigation = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="AppCategories" component={CategoriesScreen} options={{ title: 'Categories' }} />
+      <Stack.Screen name="AppCategories" component={CategoriesScreen}  options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

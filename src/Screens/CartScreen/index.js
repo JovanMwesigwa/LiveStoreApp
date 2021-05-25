@@ -9,7 +9,7 @@ import styles from './styles.js'
 
 const CartScreen = () => {
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <AppText {...styles.text}>My Cart</AppText>
             <View style={styles.cartInfo}>
                 <CartItemCard />
