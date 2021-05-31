@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import { Image, View, ScrollView, TextInput } from 'react-native'
+import { Image, View, ScrollView, TextInput, ActivityIndicator } from 'react-native'
 import {Tab, Tabs } from 'native-base';
 import {AppText, IconComponent} from '../../Components/'
 
@@ -9,11 +9,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import styles from './styles.js';
 import globalStyles from '../../../config/GlobalStyles/styles';
 
-const image = require('../../../assets/image.png');
 
-const ProductDetailsScreen = ({navigation}) => {
-    // navigation.setOptions({ tabBarVisible: false })
+const ProductDetailsScreen = ({navigation, route}) => {
+    const { ID, item, loading, error } = route.params;
+
+    var imageRegex = /(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i;
+    let image = item.yoast_head.match(imageRegex)
+
     return (
+        
         <ScrollView style={styles.container}>
             <View style={styles.headerContainer}>
                 <IconComponent rounded name='arrowleft' antDesign onPress={() => navigation.goBack()} />
@@ -21,13 +25,19 @@ const ProductDetailsScreen = ({navigation}) => {
                 <IconComponent rounded red name='shopping-cart' onPress={() => navigation.navigate('Cart')}/>
             </View>
 
-            <View style={styles.imageContainer}>
-                <Image source={image} style={styles.imageStyles}/>
-            </View>
-
+            {
+                !error &&
+                <>
+                {
+                loading ? 
+                    <ActivityIndicator size={18} color={globalStyles.darkBlue} /> :
+                    <>
+                    <View style={styles.imageContainer}>
+                            <Image source={{ uri: image[1] }} style={styles.imageStyles}/>
+                    </View>
             <View style={styles.infoContainer}>
                 <View style={styles.infoHeaderContainer}>
-                    <AppText fontSize={23}>Galaxy Note 20 Ultra</AppText>
+                    <AppText fontSize={23}>{item.name}</AppText>
                     <IconComponent name="heart-outlined" />
                 </View>
 
@@ -72,7 +82,7 @@ const ProductDetailsScreen = ({navigation}) => {
                         activeTextStyle={styles.activeTextStyle}
                         >
                         <View>
-                            
+                                <AppText fontSize={16}>{item.price}</AppText>
                         </View>
                     </Tab>
                     <Tab 
@@ -93,6 +103,13 @@ const ProductDetailsScreen = ({navigation}) => {
                 </View>
             
             </View>
+                    </>
+            }
+                </>
+            }
+
+        
+            
 
         </ScrollView>
     )

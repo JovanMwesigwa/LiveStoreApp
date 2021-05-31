@@ -29,13 +29,17 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     imageContainer: {
-        flex: 1,
+        borderRadius: 8,
+        height: Dimensions.get('window').height / 2,
+        width: Dimensions.get('window').width,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 25
     },
     imageStyles: {
-        flex: 1,
+        borderRadius: 8,
+        height: "100%",
+        width: "100%",
         resizeMode: 'contain'
     },
     infoContainer: {

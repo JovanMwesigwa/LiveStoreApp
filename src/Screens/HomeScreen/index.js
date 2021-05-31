@@ -17,6 +17,7 @@ const Home = ({ navigation }) => {
     React.useEffect(() => {
         fetchDataAPI()
     },[])
+    
     return (
         <View style={styles.container}> 
         {
@@ -87,7 +88,8 @@ const Home = ({ navigation }) => {
                             renderItem={({ item }) => (
                                     <ProductCardComponent
                                         item={item}
-                                        onPress={() => navigation.navigate('Details')} 
+                                        loading={loading}
+                                        error={error}
                                     />
                             )}
                             numColumns={2}

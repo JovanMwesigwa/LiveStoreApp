@@ -1,16 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
 import { Image, StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
+import { useNavigation } from "@react-navigation/native"
 import { AppText } from '.'
 import globalStyles from '../../config/GlobalStyles/styles'
 
 const phone = require('../../assets/phone.png')
 
-const ProductCardComponent = ({ onPress, item }) => {
+const ProductCardComponent = ({item, loading, error }) => {
+    const navigation = useNavigation()
+    
     var imageRegex = /(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i;
     let image = item.yoast_head.match(imageRegex)
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Details', {ID: item.id, item, loading, error })}>
             <View style={styles.container}>
                 <View style={styles.left}>
                     <View style={styles.imageContainer}>
@@ -46,8 +49,8 @@ const styles = StyleSheet.create({
         padding: 15
     },
     imageContainer: {
-        height: 120,
-        width: 120,
+        height: 130,
+        width: 130,
     },
     imageStyles: {
         backgroundColor: globalStyles.lighterGrey,
