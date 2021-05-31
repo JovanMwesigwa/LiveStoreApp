@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         marginVertical: 8
     },
     productContainer: {
-        marginBottom: 15,
+        margin: 10,
     },
     icon: {
         // backgroundColor: globalStyles.darkBlue,

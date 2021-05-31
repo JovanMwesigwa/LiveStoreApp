@@ -6,25 +6,21 @@ import globalStyles from '../../config/GlobalStyles/styles'
 
 const phone = require('../../assets/phone.png')
 
-const ProductCardComponent = ({ onPress }) => {
+const ProductCardComponent = ({ onPress, item }) => {
+    var imageRegex = /(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i;
+    let image = item.yoast_head.match(imageRegex)
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.container}>
                 <View style={styles.left}>
                     <View style={styles.imageContainer}>
-                        <Image source={phone} style={styles.imageStyles} />
+                        <Image source={{ uri: !image[1] ? image[2] : image[1] }} style={styles.imageStyles} />
                     </View>
-                    <AppText color={globalStyles.red}>UGX 350,000</AppText>
-                    <AppText color={globalStyles.lightGrey} fontSize={12}>UGX 350,000</AppText>
-                    <AppText color={globalStyles.darkBlue} fontSize={12}>Samsung Galaxy Note s20 Ultra</AppText>
-                </View>
-                <View style={styles.right}>
-                    <View style={styles.imageContainer}>
-                        <Image source={phone} style={styles.imageStyles} />
+                    <View style={{ flex: 1 }}>
+                        <AppText color={globalStyles.red}>UGX {item.price}</AppText>
+                        <AppText color={globalStyles.lightGrey} fontSize={12}>Sold by {item.store.name}</AppText>
+                        <Text numberOfLines={1} style={styles.name}>{item.name}</Text>
                     </View>
-                    <AppText color={globalStyles.red}>UGX 350,000</AppText>
-                    <AppText color={globalStyles.lightGrey} fontSize={12}>UGX 350,000</AppText>
-                    <AppText color={globalStyles.darkBlue} fontSize={12}>Samsung Galaxy Note s20 Ultra</AppText>
                 </View>
             </View>
         </TouchableWithoutFeedback>
@@ -33,24 +29,30 @@ const ProductCardComponent = ({ onPress }) => {
 
 const styles = StyleSheet.create({
     container: {
+        alignItems: 'center',
         flex: 1,
-        flexDirection: 'row',
+        padding: 8,
+        justifyContent: 'center',
+    },
+    name: {
+        color: globalStyles.darkBlue,
+        fontSize: 13,
     },
     right: {
         borderRadius: 8,
-        marginLeft: 8,
         elevation: 2,
         flex: 1,
         backgroundColor: globalStyles.white,
         padding: 15
     },
     imageContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        height: 120,
+        width: 120,
     },
     imageStyles: {
-        flex: 1,
+        backgroundColor: globalStyles.lighterGrey,
+        height: "100%",
+        width: '100%',
         resizeMode: 'contain',
     },
     left: {
