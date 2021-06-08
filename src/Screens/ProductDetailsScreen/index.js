@@ -97,15 +97,14 @@ const ProductDetailsScreen = ({navigation, route}) => {
                         textStyle={styles.tabText}
                         activeTextStyle={styles.activeTextStyle}
                         >
-                        <View>
-                                {/* <AppText fontSize={16} color={globalStyles.lightGrey}>{item.categories}</AppText> */}
+                        <View style={{ paddingVertical: 25 }}>
                                 <AppText 
                                     fontSize={16} 
                                     textDecorationLine='line-through'
                                     textDecorationStyle='solid'
                                     color={globalStyles.lightGrey}>UGX {item.regular_price}</AppText>
-                                <AppText fontSize={16} color="green">UGX {item.price}</AppText>
-                                                           
+                                <AppText fontSize={16} color="green">UGX {item.price}</AppText>                    
+                                <AppText color={globalStyles.black} fontWeight="700">Sold by: {item.store.name}</AppText> 
                         </View>
                     </Tab>
                     <Tab 
