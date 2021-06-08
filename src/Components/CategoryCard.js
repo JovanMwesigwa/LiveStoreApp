@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
         padding: 15,
         elevation: 1,
         backgroundColor: globalStyles.white,
-        marginVertical: 6,
     },
     icon: {
         width: 35,

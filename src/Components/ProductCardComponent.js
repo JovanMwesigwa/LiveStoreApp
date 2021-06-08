@@ -17,7 +17,7 @@ const ProductCardComponent = ({item, loading, error }) => {
             <View style={styles.container}>
                 <View style={styles.left}>
                     <View style={styles.imageContainer}>
-                        <Image source={{ uri: !image[1] ? image[2] : image[1] }} style={styles.imageStyles} />
+                        <Image source={{ uri: image[0] }} style={styles.imageStyles} />
                     </View>
                     <View style={{ flex: 1 }}>
                         <AppText color={globalStyles.red}>UGX {item.price}</AppText>

@@ -50,7 +50,7 @@ const TabNavigator = () => {
         name="Cart" 
         component={CartStackNavigation} 
         options={{
-          tabBarLabel: 'My Cart',
+          tabBarLabel: 'Shop',
           tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="cart" color={color} size={size} />
           )

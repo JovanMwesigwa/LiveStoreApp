@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { Component } from 'react';
+import React from 'react';
 import { Keyboard, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import { TextInput } from 'react-native-paper';
 import globalStyles from '../../../../config/GlobalStyles/styles';

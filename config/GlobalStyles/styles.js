@@ -5,6 +5,7 @@ const globalStyles = {
   lightGrey: '#B3B3C3',
   white: '#FFFFFF',
   lighterGrey: '#F8F8F8',
+  black: "#242B2E"
 };
 
 export default globalStyles;

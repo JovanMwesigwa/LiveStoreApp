@@ -18,7 +18,7 @@ import MainNavigation from './src/MainNavigation/MainNavigation';
 
 const App: () => Node = () => {
 
-  const [ token, setToken ] = React.useState("asfdhagsfdahfd")
+  const [ token, setToken ] = React.useState("asfdghasfdgh")
 
   const clearToken = () => {
     setToken(null);

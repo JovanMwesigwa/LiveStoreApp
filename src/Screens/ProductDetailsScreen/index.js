@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import { Image, View, ScrollView, TextInput, ActivityIndicator } from 'react-native'
+import { Image, View, ScrollView, TextInput, ActivityIndicator,TouchableOpacity } from 'react-native'
 import {Tab, Tabs } from 'native-base';
 import {AppText, IconComponent} from '../../Components/'
 
@@ -11,6 +11,8 @@ import globalStyles from '../../../config/GlobalStyles/styles';
 
 
 const ProductDetailsScreen = ({navigation, route}) => {
+
+    const [ count, setCount ] = React.useState(1)
     const { ID, item, loading, error } = route.params;
 
     var imageRegex = /(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i;
@@ -56,17 +58,17 @@ const ProductDetailsScreen = ({navigation, route}) => {
                             <AppText fontSize={16}>Select the quantity</AppText>
 
                             <View style={styles.actionBtns}>
-                                <View style={styles.reduceBtn}>
+                                <TouchableOpacity style={styles.reduceBtn} onPress={() => setCount(count-1)}>
                                     <AntDesign name='minus' size={20} color={globalStyles.white} />
-                                </View>
+                                </TouchableOpacity>
                                 <TextInput 
                                     style={styles.quantity}
                                 >
-                                    <AppText textAlign='center' color={globalStyles.white}>1</AppText>
+                                    <AppText textAlign='center' color={globalStyles.white}>{count < 0 ? 1 : count}</AppText>
                                 </TextInput>
-                                <View style={styles.reduceBtn}>
+                                <TouchableOpacity style={styles.reduceBtn} onPress={() => setCount(count+1)}>
                                     <AntDesign name='plus' size={20} color={globalStyles.white} />
-                                </View>
+                                </TouchableOpacity>
                                 <View style={styles.salesText}>
                                     <AppText color={globalStyles.white}>SALE</AppText>
                                 </View>
@@ -82,7 +84,7 @@ const ProductDetailsScreen = ({navigation, route}) => {
                         activeTextStyle={styles.activeTextStyle}
                         >
                         <View>
-                                <AppText fontSize={16}>{item.price}</AppText>
+                            <AppText fontSize={16}>{item.price}</AppText>
                         </View>
                     </Tab>
                     <Tab 
@@ -98,9 +100,9 @@ const ProductDetailsScreen = ({navigation, route}) => {
                     </Tab>
                 </Tabs>
 
-                <View style={styles.cartBtn}>
+                <TouchableOpacity style={styles.cartBtn} onPress={() => navigation.navigate('CheckoutScreen', {image: image[1], item: item, qty: count})}>
                     <AppText color={globalStyles.white}>ADD TO CART</AppText>
-                </View>
+                </TouchableOpacity>
             
             </View>
                     </>
