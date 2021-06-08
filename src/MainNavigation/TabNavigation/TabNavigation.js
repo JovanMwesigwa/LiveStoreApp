@@ -2,6 +2,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+
 
 import { HomeStackNavigation, CartStackNavigation,  ProfileStackNavigation, CategoriesStackNavigation } from '../StackNavigators/'
 import globalStyles from '../../../config/GlobalStyles/styles';
@@ -46,6 +48,18 @@ const TabNavigator = () => {
             )
         }}
       />
+
+      <Tab.Screen 
+        name="Profile" 
+        component={ProfileStackNavigation}
+        options={{
+          tabBarLabel: 'Search',
+          tabBarIcon: ({ color, size }) => (
+              <AntDesign name="search1" color={color} size={size} />
+          )
+        }}
+        />
+
       <Tab.Screen 
         name="Cart" 
         component={CartStackNavigation} 
@@ -56,16 +70,7 @@ const TabNavigator = () => {
           )
         }}
       />
-      <Tab.Screen 
-        name="Profile" 
-        component={ProfileStackNavigation}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="account-circle" color={color} size={size} />
-          )
-        }}
-        />
+
     </Tab.Navigator>
   );
 }

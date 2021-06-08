@@ -12,7 +12,7 @@ const WooCommerce = new WooCommerceAPI({
     queryStringAuth: true
   });
 
-const useFetchData = (url) => {
+const useSearchData = (url, text) => {
     const [ data, setData ] = React.useState([]);
     const [ loading, setLoading ] = React.useState(false);
     const [ error, setError ] = React.useState("")
@@ -20,6 +20,7 @@ const useFetchData = (url) => {
     const fetchDataAPI = () => {
         setLoading(true);
         WooCommerce.get(url,{
+            search: text,
             per_page: 100, 
           })
           .then((data) => {
@@ -39,6 +40,6 @@ const useFetchData = (url) => {
       }
   }
 
-export default useFetchData;
+export default useSearchData;
 
  

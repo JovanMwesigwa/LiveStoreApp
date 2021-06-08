@@ -3,17 +3,24 @@ import React from 'react'
 import { Image, View, ScrollView, TextInput, ActivityIndicator,TouchableOpacity } from 'react-native'
 import {Tab, Tabs } from 'native-base';
 import {AppText, IconComponent} from '../../Components/'
-
+import FastImage from 'react-native-fast-image'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import styles from './styles.js';
 import globalStyles from '../../../config/GlobalStyles/styles';
+import useFetchData from '../../api/useFetchCategories';
 
 
 const ProductDetailsScreen = ({navigation, route}) => {
 
     const [ count, setCount ] = React.useState(1)
     const { ID, item, loading, error } = route.params;
+
+    const { loading: detailsLoading, fetchDataAPI, data, error: detailErrors } =  useFetchData("products/"+ID);
+
+    React.useEffect(() => {
+        fetchDataAPI()
+    },[])
 
     var imageRegex = /(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i;
     let image = item.yoast_head.match(imageRegex)
@@ -35,7 +42,14 @@ const ProductDetailsScreen = ({navigation, route}) => {
                     <ActivityIndicator size={18} color={globalStyles.darkBlue} /> :
                     <>
                     <View style={styles.imageContainer}>
-                            <Image source={{ uri: image[1] }} style={styles.imageStyles}/>
+                            <FastImage 
+                                source={{ 
+                                    uri: image[1],
+                                    priority: FastImage.priority.high,
+                                 }} 
+                                 resizeMode={FastImage.resizeMode.cover}
+                                 style={styles.imageStyles}
+                            />
                     </View>
             <View style={styles.infoContainer}>
                 <View style={styles.infoHeaderContainer}>
@@ -64,7 +78,7 @@ const ProductDetailsScreen = ({navigation, route}) => {
                                 <TextInput 
                                     style={styles.quantity}
                                 >
-                                    <AppText textAlign='center' color={globalStyles.white}>{count < 0 ? 1 : count}</AppText>
+                                    <AppText textAlign='center' paddingLeft={25} color={globalStyles.white}>{count < 0 ? 1 : count}</AppText>
                                 </TextInput>
                                 <TouchableOpacity style={styles.reduceBtn} onPress={() => setCount(count+1)}>
                                     <AntDesign name='plus' size={20} color={globalStyles.white} />
@@ -84,7 +98,14 @@ const ProductDetailsScreen = ({navigation, route}) => {
                         activeTextStyle={styles.activeTextStyle}
                         >
                         <View>
-                            <AppText fontSize={16}>{item.price}</AppText>
+                                {/* <AppText fontSize={16} color={globalStyles.lightGrey}>{item.categories}</AppText> */}
+                                <AppText 
+                                    fontSize={16} 
+                                    textDecorationLine='line-through'
+                                    textDecorationStyle='solid'
+                                    color={globalStyles.lightGrey}>UGX {item.regular_price}</AppText>
+                                <AppText fontSize={16} color="green">UGX {item.price}</AppText>
+                                                           
                         </View>
                     </Tab>
                     <Tab 

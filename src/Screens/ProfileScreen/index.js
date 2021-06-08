@@ -1,30 +1,54 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import { ScrollView, View } from 'react-native'
-import { ProfileCard } from '../../Components'
+import { ActivityIndicator, View, Keyboard, FlatList } from 'react-native'
+import globalStyles from '../../../config/GlobalStyles/styles'
+import useSearchData from '../../api/useSearchData'
+import { ProductCardComponent, ProfileCard, SearchComponent } from '../../Components'
 import AppText from '../../Components/AppText'
 
 import styles from './styles'
 
 const ProfileScreen = ({ navigation }) => {
-    return (
-        <ScrollView style={styles.container}>
-            <View style={styles.userContainer}>
-                <View style={styles.avator}>
 
-                </View>
-                <AppText fontSize={20} marginBottom={12}>@JohnDoe</AppText>
+    const [ text, setText ] = React.useState("");
+
+    const { loading, fetchDataAPI, data, error } =  useSearchData("products/", text);
+
+    const submit = () => {
+        Keyboard.dismiss()
+
+        fetchDataAPI()
+
+        setText("")
+    }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <AppText fontSize={20} fontWeight="700">Search for any product</AppText>
+                <AppText fontSize={18}>Your choice!</AppText>
+            </View>
+            <View style={styles.searchContainer}>  
+                <SearchComponent text={text} setText={setText} onPress={submit} />
             </View>
 
-            <ProfileCard title="My Cart" onPress={() => navigation.navigate('Cart')} />
+            {
+                loading ? <ActivityIndicator size={13} color={globalStyles.red} /> :
+                <FlatList 
+                    data={data}
+                    renderItem={({ item }) => (
+                        <ProductCardComponent
+                            item={item}
+                            loading={loading}
+                            error={error}
+                        />
+                    )}
+                    numColumns={2}
+                    keyExtractor ={(item) => item.id.toString()}
+                />
+            }
 
-            <ProfileCard title="My Orders" />
-
-            <ProfileCard title="Settings" />
-
-            <ProfileCard title="Logout" />
-
-        </ScrollView>
+        </View>
     )
 }
 

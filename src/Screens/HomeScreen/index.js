@@ -12,11 +12,13 @@ const iphone = require('../../../assets/iphone.png')
 
 const Home = ({ navigation }) => {
 
+    const [ pageNo, setPageNo ] = React.useState(1)
+
     const { loading, fetchDataAPI, data, error } =  useFetchData("products");
 
     React.useEffect(() => {
         fetchDataAPI()
-    },[])
+    },[]);
     
     return (
         <View style={styles.container}> 
@@ -67,9 +69,7 @@ const Home = ({ navigation }) => {
                                 </View>
                 
                                 <View style={styles.hotSalesContainer}>
-                                    {/* <View style={styles.cardInfo}> */}
-                                        <CardInfoComponent />
-                                    {/* </View> */}
+                                    <CardInfoComponent />
                                     <Image source={iphone} style={styles.imageStyles}/>
                                 </View>
                 

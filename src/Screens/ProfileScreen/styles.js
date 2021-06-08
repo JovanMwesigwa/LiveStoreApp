@@ -10,7 +10,14 @@ const styles = StyleSheet.create({
         height: 100,
         marginVertical: 12,
         width: 100,
-    },  
+    }, 
+    searchContainer: {
+        height: 80,
+    },
+    header: {
+        paddingHorizontal: 25,
+        paddingVertical: 15
+    } ,
     container: {
         flex: 1,
         backgroundColor: globalStyles.lighterGrey,

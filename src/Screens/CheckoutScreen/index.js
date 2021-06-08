@@ -3,6 +3,8 @@ import React from 'react'
 import { Alert, Image, View, ScrollView, TextInput, TouchableOpacity, Text } from 'react-native'
 import {AppCurtain, AppText, DialogPopup, ErrorDialPopup, IconComponent} from '../../Components/'
 import axios from 'axios';
+import FastImage from 'react-native-fast-image'
+
 
 import styles from './styles.js';
 import globalStyles from '../../../config/GlobalStyles/styles';
@@ -129,7 +131,14 @@ const CheckoutScreen = ({navigation, route}) => {
 
             <View style={styles.itemCard}>
                 <View style={styles.imageContainer}>
-                        <Image source={{ uri: image }} style={styles.imageStyles}/>
+                        <FastImage 
+                            source={{ 
+                                uri: image,
+                                priority: FastImage.priority.high,
+                             }} 
+                             resizeMode={FastImage.resizeMode.cover}
+                             style={styles.imageStyles}
+                        />
                 </View>
                 <View style={styles.productInfoCard}>
                     <Text style={styles.text} numberOfLines={1}>{item.name}</Text>
