@@ -15,8 +15,11 @@ const styles = StyleSheet.create({
         height: 80,
     },
     header: {
+        alignItems: 'center',
         paddingHorizontal: 25,
-        paddingVertical: 15
+        paddingVertical: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     } ,
     container: {
         flex: 1,

@@ -40,7 +40,7 @@ const Home = ({ navigation }) => {
                             
                             <View style={styles.categoryContainer}> 
                                 <View style={styles.topContainer} >
-                                    <HeaderText>Select Category</HeaderText> 
+                                    <HeaderText>All Categories</HeaderText> 
                                     <TouchableOpacity onPress={() => navigation.navigate('AppCategories')}>
                                         <AppText color={globalStyles.red}>View all</AppText>
                                     </TouchableOpacity>
@@ -59,7 +59,7 @@ const Home = ({ navigation }) => {
                             </View>
                 
                             <View style={styles.searchContainer}>  
-                                <SearchComponent />
+                                <SearchComponent home  navigate={() => navigation.navigate("Profile")}/>
                             </View>
                 
                             <View style={styles.salesContainer}>  
