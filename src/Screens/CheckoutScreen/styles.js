@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         elevation: 1,
         backgroundColor: globalStyles.white,
         marginVertical: 10,
-        padding: 12
+        padding: 12,
     },
     itemCard: {
         elevation: 1,
@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
     },
     productInfoCard: {
         flex: 2,
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
+        paddingLeft: 18,
     },
     pricesInfoCard: {
         flex: 1,
