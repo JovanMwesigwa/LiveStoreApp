@@ -38,6 +38,18 @@ const TabNavigator = () => {
           )
       }}
         />
+
+      <Tab.Screen 
+        name="Profile" 
+        component={ProfileStackNavigation}
+        options={{
+          tabBarLabel: 'Search',
+          tabBarIcon: ({ color, size }) => (
+              <AntDesign name="search1" color={color} size={size} />
+          )
+        }}
+      />
+
       <Tab.Screen 
         name="Categories" 
         component={CategoriesStackNavigation} 
@@ -49,18 +61,7 @@ const TabNavigator = () => {
         }}
       />
 
-      <Tab.Screen 
-        name="Profile" 
-        component={ProfileStackNavigation}
-        options={{
-          tabBarLabel: 'Search',
-          tabBarIcon: ({ color, size }) => (
-              <AntDesign name="search1" color={color} size={size} />
-          )
-        }}
-        />
-
-      <Tab.Screen 
+      {/* <Tab.Screen 
         name="Cart" 
         component={CartStackNavigation} 
         options={{
@@ -69,7 +70,7 @@ const TabNavigator = () => {
               <MaterialCommunityIcons name="cart" color={color} size={size} />
           )
         }}
-      />
+      /> */}
 
     </Tab.Navigator>
   );

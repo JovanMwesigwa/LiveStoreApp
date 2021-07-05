@@ -121,7 +121,7 @@ const ProductDetailsScreen = ({navigation, route}) => {
                 </Tabs>
 
                 <TouchableOpacity style={styles.cartBtn} onPress={() => navigation.navigate('CheckoutScreen', {image: image[1], item: item, qty: count})}>
-                    <AppText color={globalStyles.white}>ADD TO CART</AppText>
+                    <AppText color={globalStyles.white}>BUY</AppText>
                 </TouchableOpacity>
             
             </View>

@@ -2,6 +2,7 @@
 import React from 'react'
 import { ActivityIndicator, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import styles from './styles.js'
 import {AppText, CardInfoComponent, HeaderText, HotSalesComponent, IconCard, IconComponent, ProductCardComponent, SearchComponent} from '../../Components/index'
@@ -27,15 +28,12 @@ const Home = ({ navigation }) => {
                 <>
                     {
                     loading ? 
-                    <ActivityIndicator size={18} color={globalStyles.darkBlue} /> :
-                        <FlatList
-                            ListHeaderComponent={
-                                <>
+                    <ScrollView showsVerticalScrollIndicator={false}>
                                 <View style={styles.headerContainer}>  
                                 <View style={styles.icon} />
-                                <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-                                    <Entypo name='shopping-cart' size={25} color={globalStyles.darkBlue} />
-                                </TouchableOpacity>
+                                <View >
+                                    <FontAwesome name="shopping-bag"size={25} color={globalStyles.darkBlue} />
+                                </View>
                             </View>
                             
                             <View style={styles.categoryContainer}> 
@@ -50,9 +48,59 @@ const Home = ({ navigation }) => {
                                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                                         <IconCard selected name='Phones' icon='phone-portrait-outline' />
                                         <IconCard  name='Computer' icon="laptop-outline"  />
+                                        <IconCard  name='Kitchen'  icon="restaurant" />
+                                        <IconCard  name='Office' icon="ios-easel-outline" />
                                         <IconCard  name='Gifts' icon="ios-gift-outline" />
-                                        <IconCard  name='Kitchen'  icon="fast-food-outline" />
-                                        <IconCard  name='Kitchen' icon="fast-food-outline" />
+                                    </ScrollView>
+                                </View>
+                
+                            </View>
+                
+                            <View style={styles.searchContainer}>  
+                                <SearchComponent home  navigate={() => navigation.navigate("Profile")}/>
+                            </View>
+                
+                            <View style={styles.salesContainer}>  
+                
+                                <View style={styles.topContainer}>
+                                    <HeaderText>Hot Sales</HeaderText> 
+                                </View>
+                
+                                <View style={styles.hotSalesContainer}>
+                                    <CardInfoComponent />
+                                    <Image source={iphone} style={styles.imageStyles}/>
+                                </View>
+                
+                            </View>
+                            <View style={{ paddingVertical: 12 }}>
+                                <ActivityIndicator size={18} color={globalStyles.darkBlue} /> 
+                            </View>
+                            </ScrollView> :
+                        <FlatList
+                            ListHeaderComponent={
+                                <>
+                                <View style={styles.headerContainer}>  
+                                <View style={styles.icon} />
+                                <View >
+                                    <FontAwesome name="shopping-bag"size={25} color={globalStyles.darkBlue} />
+                                </View>
+                            </View>
+                            
+                            <View style={styles.categoryContainer}> 
+                                <View style={styles.topContainer} >
+                                    <HeaderText>All Categories</HeaderText> 
+                                    <TouchableOpacity onPress={() => navigation.navigate('AppCategories')}>
+                                        <AppText color={globalStyles.red}>View all</AppText>
+                                    </TouchableOpacity>
+                                </View>
+                                
+                                <View style={styles.categories}>
+                                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                                        <IconCard selected name='Phones' icon='phone-portrait-outline' />
+                                        <IconCard  name='Computer' icon="laptop-outline"  />
+                                        <IconCard  name='Kitchen'  icon="restaurant" />
+                                        <IconCard  name='Office' icon="ios-easel-outline" />
+                                        <IconCard  name='Gifts' icon="ios-gift-outline" />
                                     </ScrollView>
                                 </View>
                 
@@ -79,7 +127,7 @@ const Home = ({ navigation }) => {
                 
                                 <View style={styles.topContainer}>
                                     <HeaderText>Best Sellers</HeaderText> 
-                                    <AppText color={globalStyles.red}>See more</AppText>
+                                    <AppText color={globalStyles.red}>Top</AppText>
                                 </View>
                             </View>
                             </>

@@ -14,7 +14,7 @@ const CardInfoComponent = () => {
             <AppText {...styles.headerText}>IPhone 12</AppText>
             <AppText fontSize={12} color={globalStyles.white}>Super, Mega 4</AppText>
             <View style={styles.btn}>
-                <AppText fontSize={12} fontWeight='700'>Buy now</AppText>
+                <AppText fontSize={12} fontWeight='700'>Avaliable</AppText>
             </View>
         </View>
     )
